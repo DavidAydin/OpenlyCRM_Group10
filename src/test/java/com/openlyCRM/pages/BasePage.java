@@ -17,8 +17,22 @@ public abstract class BasePage {
     public WebElement homeLink;
     
     
+    /**
+     * This method may be used to wait until a main page loads.
+     * It works for all main pages.
+     */
+    public void waitUntilHomeLinkIsClickable(){
+        new WebDriverWait(Driver.get(),10).until(ExpectedConditions.elementToBeClickable(homeLink));
+    }
+    
+    /**
+     * This method navigates through the menu items
+     * Also works for the menus under the More item.
+     * It clicks the More button automatically if necessary
+     * @param menuName
+     */
     public void navigateMainMenu(String menuName){
-        new WebDriverWait(Driver.get(),5).until(ExpectedConditions.elementToBeClickable(homeLink));
+        waitUntilHomeLinkIsClickable();
         String menuItemXpath = "//span[@class='menu-item-link-text'][contains(text(),'"+menuName+"')]";
         WebElement moreMenuItem = Driver.get().findElement(By.xpath("//span[@class='menu-favorites-more-text']"));
         WebElement menuItem = Driver.get().findElement(By.xpath(menuItemXpath));
@@ -26,7 +40,7 @@ public abstract class BasePage {
             moreMenuItem.click();
         }
         menuItem.click();
-        new WebDriverWait(Driver.get(),5).until(ExpectedConditions.elementToBeClickable(homeLink));
+        waitUntilHomeLinkIsClickable();
     }
     
     

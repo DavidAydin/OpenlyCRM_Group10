@@ -4,8 +4,6 @@ import com.openlyCRM.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 /**
@@ -18,9 +16,7 @@ public class HomePage extends BasePage{
     @FindBy(xpath = "//div[@id='feed-add-post-form-tab']//span[contains(text(),'More')]")
     public WebElement QN_More;
     
-    public void waitUntilHomeLinkIsClickable(){
-        new WebDriverWait(Driver.get(),10).until(ExpectedConditions.elementToBeClickable(homeLink));
-    }
+    
     
     /**
      * This method navigates through the quick navigation bar.
