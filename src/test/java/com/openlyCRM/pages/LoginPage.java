@@ -7,8 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class Login {
-    public Login(){
+public class LoginPage {
+    public LoginPage(){
         PageFactory.initElements(Driver.get(),this);
     }
   
@@ -50,6 +50,7 @@ public class Login {
         passwordInput.sendKeys(""+ Keys.SHIFT+Keys.HOME+Keys.BACK_SPACE);
         passwordInput.sendKeys(password);
         loginSubmit.click();
+        new HomePage().waitUntilHomeLinkIsClickable();
        
     }
 }
