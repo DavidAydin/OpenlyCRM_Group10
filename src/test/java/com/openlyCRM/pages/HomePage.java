@@ -26,6 +26,12 @@ public class HomePage extends BasePage{
     public void goToQuickNavigationTab(String QN_tabName){
         waitUntilHomeLinkIsClickable();
         String tabLocator = "//div[@id='feed-add-post-form-tab']//span[contains(text(),'"+QN_tabName+"')]";
+        boolean isMore = QN_tabName=="File" || QN_tabName=="Appreciation"||QN_tabName=="Announcement"||QN_tabName==
+                "Workflow";
+        if(isMore){
+            QN_More.click();
+            tabLocator = "//div[@class='menu-popup-items']/span/span[contains(text(),'"+QN_tabName+"')]";
+        }
         Driver.get().findElement(By.xpath(tabLocator)).click();
     }
     
