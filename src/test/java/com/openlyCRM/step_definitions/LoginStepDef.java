@@ -24,4 +24,12 @@ public class LoginStepDef {
         String title = Driver.get().getTitle();
         Assert.assertTrue(title.contains("Portal"));
     }
+    
+    @Given("the user is logged in as Human Resource")
+    public void theUserIsLoggedInAsHumanResource() {
+        Driver.get().navigate().to(ConfigurationReader.get("url"));
+        LoginPage login = new LoginPage();
+        login.loginAs("Human Resource");
+        
+    }
 }
