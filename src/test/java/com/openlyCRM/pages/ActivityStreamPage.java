@@ -36,6 +36,34 @@ public class ActivityStreamPage extends BasePage{
     @FindBy(xpath = "//SPAN[@class='ui-btn ui-btn-success main-ui-filter-field-button main-ui-filter-save']")
     public WebElement saveChanges;
     
+    @FindBy(xpath = "//span[@class='main-ui-filter-field-add-item']")
+    public WebElement addSerachFieldButton;
+    
+    public void addSearchField(String fieldName){
+        String xPath = "//div[@class='main-ui-select-inner-label'][text()='"+fieldName+"']";
+        WebElement searchFieldElement = Driver.get().findElement(By.xpath(xPath));
+        
+        if(!searchFieldElement.isSelected()){
+            searchFieldElement.click();
+        }
+    }
+    
+    public void removeSearchField(String fieldName){
+        String xPath = "//div[@class='main-ui-select-inner-label'][text()='"+fieldName+"']";
+        WebElement searchFieldElement = Driver.get().findElement(By.xpath(xPath));
+        
+        if(searchFieldElement.isSelected()){
+            searchFieldElement.click();
+        }
+    }
+    
+    public boolean isSearchFieldSelected(String fieldName){
+        String xPath = "//div[@class='main-ui-select-inner-label'][text()='"+fieldName+"']";
+        WebElement searchFieldElement = Driver.get().findElement(By.xpath(xPath));
+        return searchFieldElement.isSelected();
+    }
+    
+    
     public void waitUntilSearchWinowReady(){
         WebDriverWait wait = new WebDriverWait(Driver.get(),5);
         wait.until(ExpectedConditions.elementToBeClickable(searchSubmitButton));
@@ -46,3 +74,7 @@ public class ActivityStreamPage extends BasePage{
         Driver.get().findElement(By.xpath(xPath)).click();
     }
 }
+
+
+
+
