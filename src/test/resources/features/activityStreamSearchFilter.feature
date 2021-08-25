@@ -1,6 +1,5 @@
-
-  @OP-525 @CRM
-  Feature:Activity Stream Page Search And Filter
+@OP-525 @CRM
+Feature: Activity Stream Page Search And Filter
 
   Background:
 		#@OP-523
@@ -44,10 +43,44 @@
       | New Filter 1 |
       | New Filter 2 |
 
-    Scenario: Adding removing search field
-      When the user clicks on the Search box
-      And the user clicks on the add field button
-      And the user adds "Favorites" search filed
-      Then the "" search field should be added
+	#*User Story:* As a user, I should be able to use "Filter and search" functionality on Active Stream
+	#
+	#*Acceptance Criteria:*
+	#
+	#User should be able to add and remove field.
+  @OP-527
+  Scenario Outline: Scenario Outline: Adding <fieldName> search field
+    When the user clicks on the Search box
+    And the user clicks on the add field button
+    And the user adds "<fieldName>" search filed
+    Then the "<fieldName>" search field should be added
+    Examples:
+      |fieldName|
+      |Date     |
+      |Type     |
+      |Author   |
+      |To       |
+      |Favorites|
+      |Tag      |
+      |Extranet |
 
-      When the
+	#*User Story:* As a user, I should be able to use "Filter and search" functionality on Active Stream
+	#
+	#*Acceptance Criteria:*
+	#
+	#User should be able to add and remove field.
+  @OP-528
+  Scenario Outline: Removing <fieldName> search field
+    When the user clicks on the Search box
+    And the user clicks on the add field button
+    And the user removes "<fieldName>" search filed
+    Then the "<fieldName>" search field should be removed
+    Examples:
+      |fieldName|
+      |Date     |
+      |Type     |
+      |Author   |
+      |To       |
+      |Favorites|
+      |Tag      |
+      |Extranet |
