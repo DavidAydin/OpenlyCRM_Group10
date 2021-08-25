@@ -43,3 +43,11 @@
       | Filter2      |
       | New Filter 1 |
       | New Filter 2 |
+
+    Scenario: Adding removing search field
+      When the user clicks on the Search box
+      And the user clicks on the add field button
+      And the user adds "Favorites" search filed
+      Then the "" search field should be added
+
+      When the

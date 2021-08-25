@@ -2,6 +2,7 @@ package com.openlyCRM.step_definitions;
 
 import com.openlyCRM.pages.ActivityStreamPage;
 import com.openlyCRM.utilities.BrowserUtils;
+import com.openlyCRM.utilities.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -76,5 +77,24 @@ public class activityStreamSearchFilterStepDef {
         ActivityStreamPage activityStreamPage =new ActivityStreamPage();
         List<String> actualFilterNames = BrowserUtils.getElementsText(activityStreamPage.filterListElements);
         Assert.assertTrue(actualFilterNames.contains(filterName.toUpperCase(Locale.ROOT)));
+    }
+    
+    @And("the user clicks on the add field button")
+    public void theUserClicksOnTheAddFieldButton() {
+        ActivityStreamPage activityStreamPage = new ActivityStreamPage();
+        activityStreamPage.addSerachFieldButton.click();
+    }
+    
+    @And("the user adds {string} search filed")
+    public void theUserAddsSearchFiled(String fieldName) {
+        ActivityStreamPage activityStreamPage = new ActivityStreamPage();
+        activityStreamPage.addSearchField(fieldName);
+        
+    }
+    
+    @Then("the {string} search field should be added")
+    public void theSearchFieldShouldBeAdded(String fieldName) {
+        ActivityStreamPage activityStreamPage = new ActivityStreamPage();
+        Assert.assertTrue("Verify the "+fieldName+" is selected",activityStreamPage.isSearchFieldSelected(fieldName));
     }
 }
