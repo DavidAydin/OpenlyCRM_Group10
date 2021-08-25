@@ -19,7 +19,7 @@ public class activityStreamSearchFilterStepDef {
     public void theUserClicksOnTheSearchBox() {
         ActivityStreamPage activityStreamPage = new ActivityStreamPage();
         activityStreamPage.searchBox.click();
-        activityStreamPage.waitUntilSearchWinowReady();
+        activityStreamPage.waitUntilSearchWindowReady();
     }
     
     @Then("the following default filters should be displayed")
@@ -89,12 +89,26 @@ public class activityStreamSearchFilterStepDef {
     public void theUserAddsSearchFiled(String fieldName) {
         ActivityStreamPage activityStreamPage = new ActivityStreamPage();
         activityStreamPage.addSearchField(fieldName);
-        
+       
+       
     }
     
     @Then("the {string} search field should be added")
     public void theSearchFieldShouldBeAdded(String fieldName) {
         ActivityStreamPage activityStreamPage = new ActivityStreamPage();
         Assert.assertTrue("Verify the "+fieldName+" is selected",activityStreamPage.isSearchFieldSelected(fieldName));
+    }
+    
+    @And("the user removes {string} search filed")
+    public void theUserRemovesSearchFiled(String fieldName) {
+        ActivityStreamPage activityStreamPage = new ActivityStreamPage();
+        activityStreamPage.removeSearchField(fieldName);
+        
+    }
+    
+    @Then("the {string} search field should be removed")
+    public void theSearchFieldShouldBeRemoved(String fieldName) {
+        ActivityStreamPage activityStreamPage = new ActivityStreamPage();
+        Assert.assertFalse("Verify the "+fieldName+" is selected",activityStreamPage.isSearchFieldSelected(fieldName));
     }
 }

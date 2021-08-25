@@ -40,31 +40,31 @@ public class ActivityStreamPage extends BasePage{
     public WebElement addSerachFieldButton;
     
     public void addSearchField(String fieldName){
-        String xPath = "//div[@class='main-ui-select-inner-label'][text()='"+fieldName+"']";
+        String xPath = "//div[@class='main-ui-select-inner-label'][text()='"+fieldName+"']/parent::div";
         WebElement searchFieldElement = Driver.get().findElement(By.xpath(xPath));
         
-        if(!searchFieldElement.isSelected()){
+        if(!isSearchFieldSelected(fieldName)){
             searchFieldElement.click();
         }
     }
     
     public void removeSearchField(String fieldName){
-        String xPath = "//div[@class='main-ui-select-inner-label'][text()='"+fieldName+"']";
+        String xPath = "//div[@class='main-ui-select-inner-label'][text()='"+fieldName+"']/parent::div";
         WebElement searchFieldElement = Driver.get().findElement(By.xpath(xPath));
-        
-        if(searchFieldElement.isSelected()){
+       if(isSearchFieldSelected(fieldName)){
             searchFieldElement.click();
         }
     }
     
     public boolean isSearchFieldSelected(String fieldName){
-        String xPath = "//div[@class='main-ui-select-inner-label'][text()='"+fieldName+"']";
+        String xPath = "//div[@class='main-ui-select-inner-label'][text()='"+fieldName+"']/parent::div";
         WebElement searchFieldElement = Driver.get().findElement(By.xpath(xPath));
-        return searchFieldElement.isSelected();
+        String isChecked = searchFieldElement.getAttribute("class");
+        return isChecked.endsWith("main-ui-checked");
     }
     
     
-    public void waitUntilSearchWinowReady(){
+    public void waitUntilSearchWindowReady(){
         WebDriverWait wait = new WebDriverWait(Driver.get(),5);
         wait.until(ExpectedConditions.elementToBeClickable(searchSubmitButton));
     }

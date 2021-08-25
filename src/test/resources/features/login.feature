@@ -1,5 +1,5 @@
 
-Feature: Login
+Feature: Login tests
 
   Scenario: User logs in as Marketing
     Given the user lands in the login page
