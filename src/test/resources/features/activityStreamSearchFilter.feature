@@ -84,3 +84,30 @@ Feature: Activity Stream Page Search And Filter
       |Favorites|
       |Tag      |
       |Extranet |
+
+	#*User Story:* As a user, I should be able to use "Filter and search" functionality on Active Stream
+	#
+	#*Acceptance Criteria:*
+	#
+	#User should be able to search by selecting Date,
+  @OP-529
+  Scenario Outline: Selecting predefined date search filter
+    When the user clicks on the Search box
+    And the user clicks on restore default fields link
+    And the user clicks on the date filter box
+    And the user clicks on "<readyDateFilter>" date filter
+    And the user clicks on the Search button
+    Then the search results should be displayed
+    Examples:
+      | readyDateFilter |
+      | Yesterday       |
+      | Current day     |
+      | This week       |
+      | This month      |
+      | Current quarter |
+      | Last 7 days     |
+      | Last 30 days    |
+      | Last 60 days    |
+      | Last 90 days    |
+      | Last week       |
+      | Last month      |

@@ -1,4 +1,4 @@
-
+@login
 Feature: Login tests
 
   Scenario: User logs in as Marketing

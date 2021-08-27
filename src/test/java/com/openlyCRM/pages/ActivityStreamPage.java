@@ -1,14 +1,19 @@
 package com.openlyCRM.pages;
 
+import com.openlyCRM.utilities.BrowserUtils;
 import com.openlyCRM.utilities.Driver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.security.PublicKey;
 import java.util.List;
+import java.util.Locale;
 
 public class ActivityStreamPage extends BasePage{
     
@@ -22,7 +27,7 @@ public class ActivityStreamPage extends BasePage{
     @FindBy(xpath = "//span[@class='main-ui-filter-sidebar-item-text']")
     public List<WebElement> filterListElements;
     
-    @FindBy(xpath = "//button[@class='ui-btn ui-btn-primary ui-btn-icon-search main-ui-filter-field-button  main-ui-filter-find']")
+    @FindBy(xpath = "//button[contains(@class,'main-ui-filter-find')]")
     public WebElement searchSubmitButton;
     
     @FindBy(xpath = "//span[@title='Configure filter']")
@@ -38,62 +43,74 @@ public class ActivityStreamPage extends BasePage{
     public WebElement saveChanges;
     
     @FindBy(xpath = "//span[@class='main-ui-filter-field-add-item']")
-    public WebElement addSerachFieldButton;
-
+    public WebElement addSearchFieldButton;
+    
+    @FindBy(xpath = "//div[@class='feed-post-block feed-post-block-short feed-post-block-separator']")
+    public List<WebElement> searchResultBoxes;
+    
     @FindBy(css = "span[id='feed-add-post-form-tab-calendar'] span")
     public WebElement eventButton;
-
+    
     @FindBy(css = "input#feed-cal-event-fromcal_3Jcl")
     public WebElement startDate;
-
+    
     @FindBy(css = "#feed-cal-event-tocal_3Jcl")
     public WebElement endDate;
-
+    
     @FindBy(css = "#feed_cal_event_from_timecal_3Jcl")
     public WebElement startTime;
-
+    
     @FindBy(css = "#feed_cal_event_to_timecal_3Jcl")
     public WebElement endTime;
-
+    
     @FindBy(css = "#feed-cal-tz-switchcal_3Jcl")
     public WebElement SpecifyTimezone;
-
+    
     @FindBy(xpath = "//span[@class='logo-color']")
     public WebElement logo;
-
+    
     @FindBy(css = "#feed-cal-tz-fromcal_3Jcl")
     public WebElement fromTimeZone;
-
+    
     @FindBy(css = "#feed-cal-tz-tocal_3Jcl")
     public WebElement toTimeZone;
-
+    
     @FindBy(css = "#event-remind_countcal_3Jcl")
     public WebElement setReminderbox;
-
+    
     @FindBy(css = "#event-remind_typecal_3Jcl")
     public WebElement setReminderDropdown;
-
+    
     @FindBy(css = "#event-locationcal_3Jcl")
     public WebElement eventLocationBox;
-
+    
     @FindBy(css = "a#feed-event-dest-add-link")
     public WebElement addPersonsGroupsOrDepartments;
-
+    
     @FindBy(xpath = "//span[@class='popup-window-close-icon']")
     public WebElement popupCloseButton;
-
+    
     @FindBy(xpath = "//span[@class='feed-event-destination-text']")
     public WebElement checkMembers;
-
+    
     @FindBy(id = "destDepartmentTab_calnAJEM3")
     public WebElement employeesAndDepartments;
-
+    
     @FindBy(xpath = "//div[@class='bx-finder-company-department-employees']/a[2]")
     public WebElement oneEmployee;
-
+    
     @FindBy(xpath = "//span[@class='bx-finder-groupbox-content']/a")
     public WebElement toAllEmployees;
-
+    
+    @FindBy(xpath = "//div[@data-name='DATE_CREATE_datesel']")
+    public WebElement searchFilterDateBox;
+    
+    @FindBy(xpath = "//div[contains(@class,'feed-post-block')]")
+    public List<WebElement> searchResults;
+    
+    @FindBy(xpath = "//span[@class='main-ui-filter-field-restore-items']")
+    public WebElement restoreFieldsLink;
+    
     public void addSearchField(String fieldName){
         String xPath = "//div[@class='main-ui-select-inner-label'][text()='"+fieldName+"']/parent::div";
         WebElement searchFieldElement = Driver.get().findElement(By.xpath(xPath));
@@ -103,10 +120,20 @@ public class ActivityStreamPage extends BasePage{
         }
     }
     
+    public void selectReadyDateFilter(String dateFilterName){
+        int size=
+                Driver.get().findElements(By.xpath("//div[contains(@data-item,'{\"NAME\":\""+dateFilterName+"\",\"VALUE\":')]")).size();
+        WebElement dateFilter =
+                Driver.get().findElement(By.xpath("(//div[contains(@data-item,'{\"NAME\":\""+dateFilterName+"\"," +
+                        "\"VALUE\":')])["+size+"]/div"));
+        dateFilter.click();
+        
+    }
+    
     public void removeSearchField(String fieldName){
         String xPath = "//div[@class='main-ui-select-inner-label'][text()='"+fieldName+"']/parent::div";
         WebElement searchFieldElement = Driver.get().findElement(By.xpath(xPath));
-       if(isSearchFieldSelected(fieldName)){
+        if(isSearchFieldSelected(fieldName)){
             searchFieldElement.click();
         }
     }
