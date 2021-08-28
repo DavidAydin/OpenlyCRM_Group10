@@ -1,3 +1,4 @@
+@smoke
 Feature: Smoke Test
 
   Scenario: User logs in as Marketing

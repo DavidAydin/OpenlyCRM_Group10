@@ -8,23 +8,24 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.BrokenBarrierException;
 
 public class activityStreamSearchFilterStepDef {
+    ActivityStreamPage activityStreamPage = new ActivityStreamPage();
     
     @When("the user clicks on the Search box")
     public void theUserClicksOnTheSearchBox() {
-        ActivityStreamPage activityStreamPage = new ActivityStreamPage();
         activityStreamPage.searchBox.click();
         activityStreamPage.waitUntilSearchWindowReady();
     }
     
     @Then("the following default filters should be displayed")
     public void theFollowingDefaultFiltersShouldBeDisplayed(List<String> expectedFilters) {
-        ActivityStreamPage activityStreamPage = new ActivityStreamPage();
         List<WebElement> filterListElements = activityStreamPage.filterListElements;
         List<String> actualFilters = BrowserUtils.getElementsText(filterListElements);
         
@@ -35,80 +36,97 @@ public class activityStreamSearchFilterStepDef {
     
     @And("the user clicks on the configure filters button")
     public void theUserClicksOnTheConfigureFiltersButton() {
-        ActivityStreamPage activityStreamPage = new ActivityStreamPage();
         activityStreamPage.configureFilters.click();
     }
     
     
     @And("the user deletes the {string}")
     public void theUserDeletesThe(String filterName) {
-        ActivityStreamPage activityStreamPage  =new ActivityStreamPage();
         activityStreamPage.deleteFilter(filterName);
         
     }
     
     @Then("the {string} should be deleted")
     public void theShouldBeDeleted(String filterName) {
-        ActivityStreamPage activityStreamPage =new ActivityStreamPage();
         List<String> actualFilterNames = BrowserUtils.getElementsText(activityStreamPage.filterListElements);
         Assert.assertFalse(actualFilterNames.contains(filterName.toUpperCase(Locale.ROOT)));
     }
     
     @And("the user clicks on the save filter button")
     public void theUserClicksOnTheSaveFilterButton() {
-        ActivityStreamPage activityStreamPage= new ActivityStreamPage();
         activityStreamPage.saveFilterButton.click();
     }
     
     @And("the user enters new filter: {string}")
     public void theUserEntersNewFilter(String filterName) {
-        ActivityStreamPage activityStreamPage= new ActivityStreamPage();
         activityStreamPage.filterNameEntryBox.sendKeys(filterName);
     }
     
     @And("the user clicks on the save button")
     public void theUserClicksOnTheSaveButton() {
-        ActivityStreamPage activityStreamPage= new ActivityStreamPage();
         activityStreamPage.saveChanges.click();
+        BrowserUtils.waitForMilis(300);
     }
     
     @Then("the {string} should be added")
     public void theShouldBeAdded(String filterName) {
-        ActivityStreamPage activityStreamPage =new ActivityStreamPage();
         List<String> actualFilterNames = BrowserUtils.getElementsText(activityStreamPage.filterListElements);
         Assert.assertTrue(actualFilterNames.contains(filterName.toUpperCase(Locale.ROOT)));
     }
     
     @And("the user clicks on the add field button")
     public void theUserClicksOnTheAddFieldButton() {
-        ActivityStreamPage activityStreamPage = new ActivityStreamPage();
-        activityStreamPage.addSerachFieldButton.click();
+        activityStreamPage.addSearchFieldButton.click();
     }
     
     @And("the user adds {string} search filed")
     public void theUserAddsSearchFiled(String fieldName) {
-        ActivityStreamPage activityStreamPage = new ActivityStreamPage();
         activityStreamPage.addSearchField(fieldName);
-       
-       
+        
     }
     
     @Then("the {string} search field should be added")
     public void theSearchFieldShouldBeAdded(String fieldName) {
-        ActivityStreamPage activityStreamPage = new ActivityStreamPage();
         Assert.assertTrue("Verify the "+fieldName+" is selected",activityStreamPage.isSearchFieldSelected(fieldName));
     }
     
     @And("the user removes {string} search filed")
     public void theUserRemovesSearchFiled(String fieldName) {
-        ActivityStreamPage activityStreamPage = new ActivityStreamPage();
         activityStreamPage.removeSearchField(fieldName);
-        
     }
     
     @Then("the {string} search field should be removed")
     public void theSearchFieldShouldBeRemoved(String fieldName) {
-        ActivityStreamPage activityStreamPage = new ActivityStreamPage();
         Assert.assertFalse("Verify the "+fieldName+" is selected",activityStreamPage.isSearchFieldSelected(fieldName));
+    }
+    
+    @And("the user clicks on the date filter box")
+    public void theUserClicksOnTheDateFilterBox() {
+        activityStreamPage.searchFilterDateBox.click();
+    }
+    
+    @And("the user clicks on {string} date filter")
+    public void theUserClicksOn(String dateFilterName) {
+        activityStreamPage.selectReadyDateFilter(dateFilterName);
+        
+    }
+    
+    @Then("the search results should be displayed")
+    public void theSearchResultsShouldBeDisplayed() {
+        boolean isSearchResultsDisplayed = activityStreamPage.searchResults.size()>0;
+        System.out.println("activityStreamPage.searchResults.size() = " + activityStreamPage.searchResults.size());
+        Assert.assertTrue("verify search results are displayed",isSearchResultsDisplayed);
+    }
+    
+    @And("the user clicks on the Search button")
+    public void theUserClicksOnTheSearchButton() {
+        BrowserUtils.waitForMilis(300);
+        activityStreamPage.searchSubmitButton.click();
+        BrowserUtils.waitForMilis(500);
+    }
+    
+    @And("the user clicks on restore default fields link")
+    public void theUserClicksOnRestoreDefaultFieldsLink() {
+        activityStreamPage.restoreFieldsLink.click();
     }
 }
