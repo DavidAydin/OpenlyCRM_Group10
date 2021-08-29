@@ -11,6 +11,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import javax.swing.text.html.CSS;
+import javax.xml.xpath.XPath;
 import java.security.PublicKey;
 import java.util.List;
 import java.util.Locale;
@@ -110,6 +112,7 @@ public class ActivityStreamPage extends BasePage{
     
     @FindBy(xpath = "//span[@class='main-ui-filter-field-restore-items']")
     public WebElement restoreFieldsLink;
+
     
     public void addSearchField(String fieldName){
         String xPath = "//div[@class='main-ui-select-inner-label'][text()='"+fieldName+"']/parent::div";
