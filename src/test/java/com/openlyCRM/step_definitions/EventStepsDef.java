@@ -33,7 +33,7 @@ public class EventStepsDef {
         String eDate = "08/28/2021";
         String eTime = "11:00 am";
 
-        activityStreamPage.staratDate.clear();
+        activityStreamPage.startDate.clear();
         activityStreamPage.startTime.clear();
         activityStreamPage.endTime.clear();
         activityStreamPage.endDate.clear();
