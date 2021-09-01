@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import javax.swing.text.html.CSS;
 import javax.xml.xpath.XPath;
 import java.security.PublicKey;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -26,7 +27,7 @@ public class ActivityStreamPage extends BasePage{
     //span[@class='main-ui-filter-sidebar-item-text'][text()='Work'] each filter
      */
     
-    @FindBy(xpath = "//span[@class='main-ui-filter-sidebar-item-text']")
+    @FindBy(xpath = "//span[@class='main-ui-filter-sidebar-item-text'][text()!='Filter']")
     public List<WebElement> filterListElements;
     
     @FindBy(xpath = "//button[contains(@class,'main-ui-filter-find')]")
@@ -112,7 +113,38 @@ public class ActivityStreamPage extends BasePage{
     
     @FindBy(xpath = "//span[@class='main-ui-filter-field-restore-items']")
     public WebElement restoreFieldsLink;
-
+    
+    @FindBy(xpath = "//div[@data-name='EVENT_ID']/div[@data-name='EVENT_ID']")
+    public WebElement searchTypeSelector;
+    
+    @FindBy(xpath = "//span[@class='main-ui-square']")
+    public List<WebElement> selectedSearchTypes;
+    
+    @FindBy(xpath = "//span[text()='Reset to default']")
+    public WebElement resetSearchFiltersToDefault;
+    
+    @FindBy(xpath = "//span[text()='Continue']")
+    public WebElement continueResettingSearchFilters;
+    
+    
+    public void selectSearchTypes(String searchTypeName){
+        String xpath = "//div[@class='main-ui-select-inner-item'][contains(@data-item,'"+searchTypeName+"')]";
+        WebElement searchType = Driver.get().findElement(By.xpath(xpath));
+        
+        if (!searchType.isSelected()){
+            searchType.click();
+        }
+    }
+    
+    public void deselectSearchTypes(String searchTypeName){
+        String xpath = "//div[@class='main-ui-select-inner-item'][contains(@data-item,'"+searchTypeName+"')]";
+        WebElement searchType = Driver.get().findElement(By.xpath(xpath));
+        
+        if (searchType.isSelected()){
+            searchType.click();
+        }
+    }
+    
     
     public void addSearchField(String fieldName){
         String xPath = "//div[@class='main-ui-select-inner-label'][text()='"+fieldName+"']/parent::div";
@@ -146,6 +178,17 @@ public class ActivityStreamPage extends BasePage{
         WebElement searchFieldElement = Driver.get().findElement(By.xpath(xPath));
         String isChecked = searchFieldElement.getAttribute("class");
         return isChecked.endsWith("main-ui-checked");
+    }
+    
+    public boolean isDefaultFieldSelected(List<String> expectedDefaultFields){
+        String xpath = "//span[@class='main-ui-control-field-label']";
+        List<WebElement> actualFieldElements = Driver.get().findElements(By.xpath(xpath));
+        List<String> actualFields = new ArrayList<>();
+        for (WebElement actualFieldElement : actualFieldElements) {
+            actualFields.add(actualFieldElement.getAttribute("title"));
+        }
+        
+        return actualFields.containsAll(expectedDefaultFields);
     }
     
     

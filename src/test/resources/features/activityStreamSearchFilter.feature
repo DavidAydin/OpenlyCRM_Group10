@@ -1,4 +1,4 @@
-@OP-525 @CRM
+@OP-525 @CRM @mine
 Feature: Activity Stream Page Search And Filter
 
   Background:
@@ -14,11 +14,12 @@ Feature: Activity Stream Page Search And Filter
   Scenario: The default filters of search box are displayed
     When the user clicks on the Search box
     Then the following default filters should be displayed
-      |WORK          |
-      |FAVORITES     |
-      |MY ACTIVITY   |
-      |ANNOUNCEMENTS |
-      |WORKFLOWS     |
+      | WORK          |
+      | FAVORITES     |
+      | MY ACTIVITY   |
+      | ANNOUNCEMENTS |
+      | WORKFLOWS     |
+
 
 	#*User Story OP-404:* As a user, I should be able to use "Filter and search" functionality on Active Stream
 	#
@@ -55,14 +56,14 @@ Feature: Activity Stream Page Search And Filter
     And the user adds "<fieldName>" search filed
     Then the "<fieldName>" search field should be added
     Examples:
-      |fieldName|
-      |Date     |
-      |Type     |
-      |Author   |
-      |To       |
-      |Favorites|
-      |Tag      |
-      |Extranet |
+      | fieldName |
+      | Date      |
+      | Type      |
+      | Author    |
+      | To        |
+      | Favorites |
+      | Tag       |
+      | Extranet  |
 
 	#*User Story:* As a user, I should be able to use "Filter and search" functionality on Active Stream
 	#
@@ -76,14 +77,14 @@ Feature: Activity Stream Page Search And Filter
     And the user removes "<fieldName>" search filed
     Then the "<fieldName>" search field should be removed
     Examples:
-      |fieldName|
-      |Date     |
-      |Type     |
-      |Author   |
-      |To       |
-      |Favorites|
-      |Tag      |
-      |Extranet |
+      | fieldName |
+      | Date      |
+      | Type      |
+      | Author    |
+      | To        |
+      | Favorites |
+      | Tag       |
+      | Extranet  |
 
 	#*User Story:* As a user, I should be able to use "Filter and search" functionality on Active Stream
 	#
@@ -100,8 +101,6 @@ Feature: Activity Stream Page Search And Filter
     Then the search results should be displayed
     Examples:
       | readyDateFilter |
-      | Yesterday       |
-      | Current day     |
       | This week       |
       | This month      |
       | Current quarter |
@@ -111,3 +110,90 @@ Feature: Activity Stream Page Search And Filter
       | Last 90 days    |
       | Last week       |
       | Last month      |
+
+
+  Scenario Outline: Selecting search type <searchType>
+    When the user clicks on the Search box
+    And the user clicks on restore default fields link
+    And the user clicks on the search type selector
+    And the user selects the search type "<searchType>"
+    Then the search type container should include "<searchType>"
+
+    Examples:
+      | searchType              |
+      | Posts                   |
+      | Announcements           |
+      | Appreciations           |
+      | Polls                   |
+      | Conversations           |
+      | Tasks                   |
+      | Working time management |
+      | Work reports            |
+      | Calendar                |
+      | External source data    |
+      | Photo gallery           |
+      | Wiki                    |
+      | Workflows               |
+
+
+  Scenario: Selecting multiple search types
+    When the user clicks on the Search box
+    And the user clicks on restore default fields link
+    And the user clicks on the search type selector
+    And the user clicks on the following search types
+      | Posts                   |
+      | Announcements           |
+      | Appreciations           |
+      | Polls                   |
+      | Conversations           |
+      | Tasks                   |
+      | Working time management |
+      | Work reports            |
+      | Calendar                |
+      | External source data    |
+      | Photo gallery           |
+      | Wiki                    |
+      | Workflows               |
+    Then the search type container should include following search types
+      | Posts                   |
+      | Announcements           |
+      | Appreciations           |
+      | Polls                   |
+      | Conversations           |
+      | Tasks                   |
+      | Working time management |
+      | Work reports            |
+      | Calendar                |
+      | External source data    |
+      | Photo gallery           |
+      | Wiki                    |
+      | Workflows               |
+
+
+  Scenario: Restoring default field
+    When the user clicks on the Search box
+    And the user clicks on the add field button
+    And the user removes "Date" search filed
+    And the user clicks on restore default fields link
+    Then the following default search fields should be selected
+      | Date   |
+      | Type   |
+      | Author |
+      | To     |
+
+  @wip
+  Scenario: Resetting search filters to default
+    When the user clicks on the Search box
+    And the user clicks on the configure filters button
+    And the user deletes the "Work"
+    And the user clicks on the save button
+    And the user clicks on the configure filters button
+    And the user clicks on the reset to default button
+    And the user clicks on the continue button
+    Then the following default filters should be displayed
+      | WORK          |
+      | FAVORITES     |
+      | MY ACTIVITY   |
+      | ANNOUNCEMENTS |
+      | WORKFLOWS     |
+
