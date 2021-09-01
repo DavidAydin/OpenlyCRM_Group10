@@ -9,6 +9,7 @@ public class AssignTaskStepDef {
     @Given("the user is logged in as {string}")
     public void the_user_is_logged_in_as(String string) {
         // Write code here that turns the phrase above into concrete actions
+        System.out.println("pass");
         throw new io.cucumber.java.PendingException();
     }
 
