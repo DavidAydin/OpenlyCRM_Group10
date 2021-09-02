@@ -1,6 +1,6 @@
 @login
-Feature: Login
-  @smoke
+Feature: Login tests
+
   Scenario: User logs in as Marketing
     Given the user lands in the login page
     When the user logs in as "Marketing"
@@ -13,7 +13,7 @@ Feature: Login
 
   Scenario: User logs in as Help Desk
     Given the user lands in the login page
-    When the user logs in as "Help Desk"
+    When the user logs in as "Helpdesk"
     Then the user should be in the Activity Stream page
 
   Scenario: the user is logged in
