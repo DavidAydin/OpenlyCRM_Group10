@@ -2,6 +2,7 @@ package com.openlyCRM.step_definitions;
 
 import com.openlyCRM.pages.AppreciationPage;
 import com.openlyCRM.pages.BasePage;
+import com.openlyCRM.pages.MessagePage;
 import com.openlyCRM.utilities.BrowserUtils;
 import com.openlyCRM.utilities.Driver;
 import io.cucumber.java.en.And;
@@ -30,17 +31,14 @@ public class AppreciationStepDef {
 
 
     @When("the user clicks on Upload files and images cell")
-    public void the_user_clicks_on_Upload_files_and_images_cell() throws InterruptedException {
-Thread.sleep(2000);
+    public void the_user_clicks_on_Upload_files_and_images_cell() {
+        new MessagePage().uploadFilesBtn.click();
     }
 
     @When("the user press enter button")
     public void the_user_press_enter_button() throws InterruptedException {
        Thread.sleep(2000);
     }
-
-
-
 
 
 
