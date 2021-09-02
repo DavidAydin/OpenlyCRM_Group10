@@ -1,5 +1,5 @@
-@OP-525 @CRM
-Feature: Activity Stream Page Search And Filter
+@OP-525 @CRM @search
+Feature:Activity Stream Page Search And Filter
 
   Background:
 		#@OP-523
@@ -111,3 +111,111 @@ Feature: Activity Stream Page Search And Filter
       | Last 90 days    |
       | Last week       |
       | Last month      |
+
+	#*ser Story:* As a user, I should be able to use "Filter and search" functionality on Active Stream
+	#
+	#*Acceptance Criteria:*
+	#
+	#User should be able to search by selecting one or more Type,
+  @OP-547
+  Scenario Outline: Selecting one search type <searchType>
+    When the user clicks on the Search box
+    And the user clicks on restore default fields link
+    And the user clicks on the search type selector
+    And the user selects the search type "<searchType>"
+    Then the search type container should include "<searchType>"
+
+    Examples:
+      | searchType              |
+      | Posts                   |
+      | Announcements           |
+      | Appreciations           |
+      | Polls                   |
+      | Conversations           |
+      | Tasks                   |
+      | Working time management |
+      | Work reports            |
+      | Calendar                |
+      | External source data    |
+      | Photo gallery           |
+      | Wiki                    |
+      | Workflows               |
+
+
+	#*User Story OP-404:* As a user, I should be able to use "Filter and search" functionality on Active Stream
+	#
+	#*Acceptance Criteria:*
+	#
+	#User should be able to search by selecting one or more Type,
+  @OP-548
+  Scenario: Selecting multiple search types
+    When the user clicks on the Search box
+    And the user clicks on restore default fields link
+    And the user clicks on the search type selector
+    And the user clicks on the following search types
+      | Posts                   |
+      | Announcements           |
+      | Appreciations           |
+      | Polls                   |
+      | Conversations           |
+      | Tasks                   |
+      | Working time management |
+      | Work reports            |
+      | Calendar                |
+      | External source data    |
+      | Photo gallery           |
+      | Wiki                    |
+      | Workflows               |
+    Then the search type container should include following search types
+      | Posts                   |
+      | Announcements           |
+      | Appreciations           |
+      | Polls                   |
+      | Conversations           |
+      | Tasks                   |
+      | Working time management |
+      | Work reports            |
+      | Calendar                |
+      | External source data    |
+      | Photo gallery           |
+      | Wiki                    |
+      | Workflows               |
+
+
+	#*User Story OP-404:* As a user, I should be able to use "Filter and search" functionality on Active Stream
+	#
+	#*Acceptance Criteria:*
+	#
+	#User should be able to restore default field,
+  @OP-549
+  Scenario: Restoring default search field
+    When the user clicks on the Search box
+    And the user clicks on the add field button
+    And the user removes "Date" search filed
+    And the user clicks on restore default fields link
+    Then the following default search fields should be selected
+      | Date   |
+      | Type   |
+      | Author |
+      | To     |
+
+	#*User Story OP-404:* As a user, I should be able to use "Filter and search" functionality on Active Stream
+	#
+	#*Acceptance Criteria:*
+	#
+	#User should be able to reset filters to default.
+  @OP-550
+  Scenario: Resetting search filters to default
+    When the user clicks on the Search box
+    And the user clicks on the configure filters button
+    And the user deletes the "Work"
+    And the user clicks on the save button
+    And the user clicks on the configure filters button
+    And the user clicks on the reset to default button
+    And the user clicks on the continue button
+    Then the following default filters should be displayed
+      | WORK          |
+      | FAVORITES     |
+      | MY ACTIVITY   |
+      | ANNOUNCEMENTS |
+      | WORKFLOWS     |

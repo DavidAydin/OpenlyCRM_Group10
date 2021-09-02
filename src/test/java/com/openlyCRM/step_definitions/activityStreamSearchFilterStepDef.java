@@ -128,5 +128,62 @@ public class activityStreamSearchFilterStepDef {
     @And("the user clicks on restore default fields link")
     public void theUserClicksOnRestoreDefaultFieldsLink() {
         activityStreamPage.restoreFieldsLink.click();
+       
+    }
+    
+    @And("the user clicks on the search type selector")
+    public void theUserClicksOnTheSearchTypeSelector() {
+        activityStreamPage.searchTypeSelector.click();
+    }
+    
+    @And("the user selects the search type {string}")
+    public void theUserSelectsTheSearchType(String typeName) {
+        activityStreamPage.selectSearchTypes(typeName);
+    }
+    
+    @Then("the search type container should include {string}")
+    public void theSearchTypeContainerShouldInclude(String typeName) {
+        List<String> selectedTypes =  BrowserUtils.getElementsText(activityStreamPage.selectedSearchTypes);
+        Assert.assertTrue(selectedTypes.contains(typeName));
+        
+    }
+    
+    @And("the user clicks on the following search types")
+    public void theUserClicksOnTheFollowingSearchTypes(List<String> searchTypes) {
+        for (String typeName : searchTypes) {
+            activityStreamPage.selectSearchTypes(typeName);
+        }
+    }
+    
+    @Then("the search type container should include following search types")
+    public void theSearchTypeContainerShouldIncludeFollowingSearchTypes(List<String> expectedSearchTypes) {
+        List<String> actualSearchTypes =  BrowserUtils.getElementsText(activityStreamPage.selectedSearchTypes);
+        Assert.assertEquals(expectedSearchTypes,actualSearchTypes);
+    }
+    
+    @Then("the following search fields should be selected")
+    public void theFollowingSearchFieldsShouldBeSelected(List<String> defaultSearchFields) {
+        for (String defaultSearchField : defaultSearchFields) {
+            boolean isSelected = activityStreamPage.isSearchFieldSelected(defaultSearchField);
+            Assert.assertTrue("verify " +defaultSearchField+ " is selected ",isSelected);
+        }
+    }
+    
+    @Then("the following default search fields should be selected")
+    public void theFollowingDefaultSearchFieldsShouldBeSelected(List<String> defaultFields) {
+        Assert.assertTrue(activityStreamPage.isDefaultFieldSelected(defaultFields));
+        
+        
+    }
+    
+    @And("the user clicks on the reset to default button")
+    public void theUserClicksOnTheResetToDefaultButton() {
+        activityStreamPage.resetSearchFiltersToDefault.click();
+    }
+    
+    @And("the user clicks on the continue button")
+    public void theUserClicksOnTheContinueButton() {
+        activityStreamPage.continueResettingSearchFilters.click();
+      
     }
 }
