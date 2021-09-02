@@ -30,7 +30,7 @@ public class activityStreamSearchFilterStepDef {
         List<String> actualFilters = BrowserUtils.getElementsText(filterListElements);
         
         Assert.assertTrue("verify all default filters are available",
-               actualFilters.containsAll(expectedFilters));
+                actualFilters.containsAll(expectedFilters));
         
     }
     
@@ -92,9 +92,7 @@ public class activityStreamSearchFilterStepDef {
     
     @And("the user removes {string} search filed")
     public void theUserRemovesSearchFiled(String fieldName) {
-        BrowserUtils.waitFor(3);
         activityStreamPage.removeSearchField(fieldName);
-        BrowserUtils.waitFor(3);
     }
     
     @Then("the {string} search field should be removed")
@@ -130,7 +128,7 @@ public class activityStreamSearchFilterStepDef {
     @And("the user clicks on restore default fields link")
     public void theUserClicksOnRestoreDefaultFieldsLink() {
         activityStreamPage.restoreFieldsLink.click();
-        BrowserUtils.waitFor(3);
+       
     }
     
     @And("the user clicks on the search type selector")
@@ -175,7 +173,7 @@ public class activityStreamSearchFilterStepDef {
     public void theFollowingDefaultSearchFieldsShouldBeSelected(List<String> defaultFields) {
         Assert.assertTrue(activityStreamPage.isDefaultFieldSelected(defaultFields));
         
-
+        
     }
     
     @And("the user clicks on the reset to default button")
@@ -186,6 +184,6 @@ public class activityStreamSearchFilterStepDef {
     @And("the user clicks on the continue button")
     public void theUserClicksOnTheContinueButton() {
         activityStreamPage.continueResettingSearchFilters.click();
-        BrowserUtils.waitFor(3);
+      
     }
 }
