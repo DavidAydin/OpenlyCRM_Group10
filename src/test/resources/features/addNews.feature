@@ -1,4 +1,4 @@
-@sd
+
 Feature:As a user, I should be able to add news under Company-US19
 
   Background:
