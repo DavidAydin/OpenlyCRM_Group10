@@ -20,7 +20,6 @@ Feature: As a user, I should be able to send messages by clicking on Message tab
     And user clicks on Message
     When the user clicks on Upload files and images cell
     Then verify upload files and images box is displayed
-    ##not finished properly
 
 
   Scenario:User should be able to add users by selecting multiple contacts from Employees and Departments contact lists.
@@ -33,6 +32,12 @@ Feature: As a user, I should be able to send messages by clicking on Message tab
 
   @wp
   Scenario:User should be able to attach a link by clicking on the link icon.
+    When user clicks on Message
+    And the user clicks on the link icon
+    And the user sends "google" to Text box
+    And the user sends "https://www.google.com/" to Link box
+    When the user clicks on  save button
+    Then verify that google is attached
 
 
 
