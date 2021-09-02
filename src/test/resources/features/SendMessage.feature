@@ -30,7 +30,7 @@ Feature: As a user, I should be able to send messages by clicking on Message tab
     And the user selects an email from the menu
     Then verify the email is displayed
 
-  @wp
+
   Scenario:User should be able to attach a link by clicking on the link icon.
     When user clicks on Message
     And the user clicks on the link icon
@@ -39,5 +39,11 @@ Feature: As a user, I should be able to send messages by clicking on Message tab
     When the user clicks on  save button
     Then verify that google is attached
 
+  @wp
+  Scenario: User should be able to insert videos by clicking on the video icon and entering the video URL.
+    When user clicks on Message
+    And the user clicks on the insert video icon
+    And the user sends "https://www.youtube.com/watch?v=eIrMbAQSU34" to video source box
+    And
 
 
