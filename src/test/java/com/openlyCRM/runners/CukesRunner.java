@@ -14,8 +14,8 @@ import org.junit.runner.RunWith;
         strict = true,
         features = "src/test/resources/features",
         glue = "com/openlyCRM/step_definitions",
-        dryRun = true,
-        tags = ""
+        dryRun = false,
+        tags = "@sd"
     )
 public class CukesRunner {
 }
