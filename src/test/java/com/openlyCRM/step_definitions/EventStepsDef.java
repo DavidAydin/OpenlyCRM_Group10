@@ -9,6 +9,8 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.List;
+
 
 public class EventStepsDef {
 
@@ -21,7 +23,7 @@ public class EventStepsDef {
 
     @And("user adds Event start date and time")
     public void userAddsEventStartDateAndTime() {
-        String sDate = "08/28/2021";
+        String sDate = "09/15/2021";
         String sTime = "10:00 am";
 
         activityStreamPage.startDate.sendKeys(sDate);
@@ -30,7 +32,7 @@ public class EventStepsDef {
 
     @And("user adds Event ending date and time")
     public void userAddsEventEndingDateAndTime() {
-        String eDate = "08/28/2021";
+        String eDate = "09/15/2021";
         String eTime = "11:00 am";
 
         activityStreamPage.startDate.clear();
@@ -56,6 +58,8 @@ public class EventStepsDef {
 
     @When("user enters data")
     public void userEntersData() {
+        activityStreamPage.eventNameBox.sendKeys(activityStreamPage.eventName);
+        BrowserUtils.waitFor(1);
         activityStreamPage.setReminderbox.clear();
         activityStreamPage.setReminderbox.sendKeys("25");
         Select reminderDropdown = new Select(activityStreamPage.setReminderDropdown);
@@ -64,7 +68,8 @@ public class EventStepsDef {
 
     @Then("system should display these data")
     public void systemShouldDisplayTheseData() {
-        Assert.assertEquals("25",activityStreamPage.setReminderbox.getAttribute("value"));
+        BrowserUtils.waitForVisibility(activityStreamPage.checkReminderElement,5);
+        Assert.assertTrue(activityStreamPage.checkReminderElement.isDisplayed());
     }
 
     @When("user selects event location from dropdown {string}")
@@ -100,5 +105,29 @@ public class EventStepsDef {
     @Then("system should display selected person on members box")
     public void systemShouldDisplaySelectedPersonOnMembersBox() {
         Assert.assertTrue(activityStreamPage.checkMembers.isDisplayed());
+    }
+
+    @When("user clicks More")
+    public void user_clicks_More() {
+        activityStreamPage.more_text.click();
+    }
+
+    @Then("the following event details parameters should be displayed")
+    public void the_following_event_details_parameters_should_be_displayed(List<String> expectedList) {
+        BrowserUtils.waitFor(1);
+        List<String> actualList = BrowserUtils.getElementsText(activityStreamPage.checklist);
+        Assert.assertEquals(expectedList,actualList);
+    }
+
+
+    @When("user clicks Send button on Event")
+    public void userClicksSendButtonOnEvent() {
+        activityStreamPage.eventSendButton.click();
+        BrowserUtils.waitFor(2);
+    }
+
+    @When("user clicks upcoming events")
+    public void userClicksUpcomingEvents() {
+        activityStreamPage.checkEventReminder();
     }
 }

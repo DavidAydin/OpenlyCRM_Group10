@@ -125,6 +125,21 @@ public class ActivityStreamPage extends BasePage{
     
     @FindBy(xpath = "//span[text()='Continue']")
     public WebElement continueResettingSearchFilters;
+
+    @FindBy(xpath = "//div[@id=\"feed-cal-additional-inner\"]/table/tbody/tr/td[@class=\"feed-cal-addit-left-c\"]/label")
+    public List<WebElement> checklist;
+
+    @FindBy(xpath = "//span[@class='feed-event-more-link-text'][normalize-space()='More']")
+    public WebElement more_text;
+
+    @FindBy(xpath = "//input[@id='feed-cal-event-namecal_3Jcl']")
+    public WebElement eventNameBox;
+
+    @FindBy(xpath = "//button[@id='blog-submit-button-save']")
+    public WebElement eventSendButton;
+
+    @FindBy(xpath = "//span[@class='calendar-slider-sidebar-remind-warning-name']")
+    public WebElement checkReminderElement;
     
     
     public void selectSearchTypes(String searchTypeName){
@@ -216,6 +231,16 @@ public class ActivityStreamPage extends BasePage{
         }
         String locator = "//div[@class='bxecpl-loc-popup calendar-inp calendar-inp-time calendar-inp-loc']/div["+numOfLocator+"]";
         Driver.get().findElement(By.xpath(locator)).click();
+    }
+
+    public String createAnEventName(){
+        return "My Event "+(int)(Math.random()*100);
+    }
+
+    public final String eventName = createAnEventName();
+
+    public void checkEventReminder(){
+        Driver.get().findElement(By.xpath("//span[contains(text(),'"+eventName+"')]")).click();
     }
 }
 
