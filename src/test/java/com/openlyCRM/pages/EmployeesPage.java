@@ -115,7 +115,7 @@ public class EmployeesPage extends BasePage{
 
         for (String s : resultsText) {
             flag = s.contains(letter);
-            System.out.println("s = " + s);
+           // System.out.println("s = " + s);
             if (!flag){
                 break;
             }
