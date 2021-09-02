@@ -90,6 +90,7 @@ public class EmployeesPage extends BasePage{
     }
 
     public boolean isInResultTable(String expectedName){
+        BrowserUtils.waitForMilis(500);
         List<String> resultsText = BrowserUtils.getElementsText(resultList);
 
         boolean flag = false;
@@ -113,14 +114,18 @@ public class EmployeesPage extends BasePage{
         List<String> resultsText = BrowserUtils.getElementsText(resultList);
         boolean flag = true;
 
+        //System.out.println("resultsText = " + resultsText);
+
         for (String s : resultsText) {
             flag = s.contains(letter);
-           // System.out.println("s = " + s);
+           System.out.println("s = " + s);
             if (!flag){
                 break;
             }
         }
         return flag;
+
+       // return resultsText.containsAll(resultList);
 
     }
 

@@ -70,6 +70,8 @@ public class EmployeesStepDefs extends BasePage{
     @Then("verify that the result name contains alphabet {string}")
     public void verify_that_the_result_name_contains_alphabet(String expectedLetter) {
         assertTrue(employeesPage.isResultsContain(expectedLetter));
+
+
     }
 
     @When("the user click on the more")
