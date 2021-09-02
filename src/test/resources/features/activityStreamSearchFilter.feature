@@ -1,5 +1,5 @@
-@OP-525 @CRM @mine
-Feature: Activity Stream Page Search And Filter
+@OP-525 @CRM @search
+Feature:Activity Stream Page Search And Filter
 
   Background:
 		#@OP-523
@@ -14,12 +14,11 @@ Feature: Activity Stream Page Search And Filter
   Scenario: The default filters of search box are displayed
     When the user clicks on the Search box
     Then the following default filters should be displayed
-      | WORK          |
-      | FAVORITES     |
-      | MY ACTIVITY   |
-      | ANNOUNCEMENTS |
-      | WORKFLOWS     |
-
+      |WORK          |
+      |FAVORITES     |
+      |MY ACTIVITY   |
+      |ANNOUNCEMENTS |
+      |WORKFLOWS     |
 
 	#*User Story OP-404:* As a user, I should be able to use "Filter and search" functionality on Active Stream
 	#
@@ -56,14 +55,14 @@ Feature: Activity Stream Page Search And Filter
     And the user adds "<fieldName>" search filed
     Then the "<fieldName>" search field should be added
     Examples:
-      | fieldName |
-      | Date      |
-      | Type      |
-      | Author    |
-      | To        |
-      | Favorites |
-      | Tag       |
-      | Extranet  |
+      |fieldName|
+      |Date     |
+      |Type     |
+      |Author   |
+      |To       |
+      |Favorites|
+      |Tag      |
+      |Extranet |
 
 	#*User Story:* As a user, I should be able to use "Filter and search" functionality on Active Stream
 	#
@@ -77,14 +76,14 @@ Feature: Activity Stream Page Search And Filter
     And the user removes "<fieldName>" search filed
     Then the "<fieldName>" search field should be removed
     Examples:
-      | fieldName |
-      | Date      |
-      | Type      |
-      | Author    |
-      | To        |
-      | Favorites |
-      | Tag       |
-      | Extranet  |
+      |fieldName|
+      |Date     |
+      |Type     |
+      |Author   |
+      |To       |
+      |Favorites|
+      |Tag      |
+      |Extranet |
 
 	#*User Story:* As a user, I should be able to use "Filter and search" functionality on Active Stream
 	#
@@ -101,6 +100,8 @@ Feature: Activity Stream Page Search And Filter
     Then the search results should be displayed
     Examples:
       | readyDateFilter |
+      | Yesterday       |
+      | Current day     |
       | This week       |
       | This month      |
       | Current quarter |
@@ -111,8 +112,13 @@ Feature: Activity Stream Page Search And Filter
       | Last week       |
       | Last month      |
 
-
-  Scenario Outline: Selecting search type <searchType>
+	#*ser Story:* As a user, I should be able to use "Filter and search" functionality on Active Stream
+	#
+	#*Acceptance Criteria:*
+	#
+	#User should be able to search by selecting one or more Type,
+  @OP-547
+  Scenario Outline: Selecting one search type <searchType>
     When the user clicks on the Search box
     And the user clicks on restore default fields link
     And the user clicks on the search type selector
@@ -136,6 +142,12 @@ Feature: Activity Stream Page Search And Filter
       | Workflows               |
 
 
+	#*User Story OP-404:* As a user, I should be able to use "Filter and search" functionality on Active Stream
+	#
+	#*Acceptance Criteria:*
+	#
+	#User should be able to search by selecting one or more Type,
+  @OP-548
   Scenario: Selecting multiple search types
     When the user clicks on the Search box
     And the user clicks on restore default fields link
@@ -170,7 +182,13 @@ Feature: Activity Stream Page Search And Filter
       | Workflows               |
 
 
-  Scenario: Restoring default field
+	#*User Story OP-404:* As a user, I should be able to use "Filter and search" functionality on Active Stream
+	#
+	#*Acceptance Criteria:*
+	#
+	#User should be able to restore default field,
+  @OP-549
+  Scenario: Restoring default search field
     When the user clicks on the Search box
     And the user clicks on the add field button
     And the user removes "Date" search filed
@@ -181,7 +199,12 @@ Feature: Activity Stream Page Search And Filter
       | Author |
       | To     |
 
-  @wip
+	#*User Story OP-404:* As a user, I should be able to use "Filter and search" functionality on Active Stream
+	#
+	#*Acceptance Criteria:*
+	#
+	#User should be able to reset filters to default.
+  @OP-550
   Scenario: Resetting search filters to default
     When the user clicks on the Search box
     And the user clicks on the configure filters button
@@ -196,4 +219,3 @@ Feature: Activity Stream Page Search And Filter
       | MY ACTIVITY   |
       | ANNOUNCEMENTS |
       | WORKFLOWS     |
-
