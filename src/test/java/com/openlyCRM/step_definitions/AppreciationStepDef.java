@@ -146,7 +146,7 @@ public class AppreciationStepDef {
     public void theUserUploadFromLocalDisks(String arg0) throws InterruptedException {
         BrowserUtils.waitFor(2);
 
-        new AppreciationPage().UploadFilesImages.sendKeys("C:\\"+arg0);
+         new AppreciationPage().UploadFilesImages.sendKeys("C:\\"+arg0);
     }
 
     @Then("the user should be upload {string}")
