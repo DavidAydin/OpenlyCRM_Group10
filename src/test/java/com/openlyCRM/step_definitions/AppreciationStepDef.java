@@ -1,7 +1,6 @@
 package com.openlyCRM.step_definitions;
 
 import com.openlyCRM.pages.*;
-import com.openlyCRM.pages.MessagePage;
 import com.openlyCRM.utilities.BrowserUtils;
 import com.openlyCRM.utilities.ConfigurationReader;
 import com.openlyCRM.utilities.Driver;
@@ -11,22 +10,9 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Action;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.interactions.SendKeysAction;
-import org.openqa.selenium.support.FindBy;
 
-import java.awt.*;
-import java.awt.datatransfer.StringSelection;
-import java.awt.event.KeyEvent;
 
 public class AppreciationStepDef {
-
-
-
 
 
 
