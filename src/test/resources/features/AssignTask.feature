@@ -11,9 +11,9 @@ Feature:
 	#5. User can delete a checklist item 
 	#6. User can add Deadline, Time Planning by using date pickers.
 	#7. User should be able to send tasks.
-	@OP-530 @OP-538
+	@OP-530 @OP-538 @wip
 	Scenario: US13_TC01 User should be able to click on the "High Priority" checkbox to set the current task to a top priority task.
-		Given the user is logged in as "Human Resource"
+		Given the user logs in as "Human Resource"
 		When the user clicks on "Task" tab on the quick navigation 
 		And the user clicks on the High Priority check box
 		Then the High Priority check box should be selected	
@@ -29,9 +29,9 @@ Feature:
 	#5. User can delete a checklist item 
 	#6. User can add Deadline, Time Planning by using date pickers.
 	#7. User should be able to send tasks.
-	@OP-531 @OP-538
+	@OP-531 @OP-538 @wip
 	Scenario: US13_TC02 User should be able to click on Visual Editor and see the editor text bar displays on top of the message box.
-		Given the user is logged in as "Human Resource"
+		Given the user logs in as "Human Resource"
 		When the user clicks on "Task" tab on the quick navigation
 		And the user clicks on the Visual Editor icon
 		Then the editor text box should be displayed
@@ -47,9 +47,9 @@ Feature:
 	#5. User can delete a checklist item 
 	#6. User can add Deadline, Time Planning by using date pickers.
 	#7. User should be able to send tasks.
-	@OP-532 @OP-538
+	@OP-532 @OP-538 @wip
 	Scenario: US_13_TC03 User can add a checklist item by clicking on the add button or checkmark
-		Given the user is logged in as "Human Resource"
+		Given the user logs in as "Human Resource"
 		When the user clicks on "Task" tab on the quick navigation
 		And the user clicks on the "Checklist" link in Task
 		And the user enters "This is the first checklist item" as description
@@ -67,9 +67,9 @@ Feature:
 	# 5. User can delete a checklist item 
 	# 6. User can add Deadline, Time Planning by using date pickers.
 	# 7. User should be able to send tasks.
-	@OP-533 @OP-538
+	@OP-533 @OP-538 @wip
 	Scenario: US_13_TC04 User can add separator lines between checklist items.
-		Given the user is logged in as "Human Resource"
+		Given the user logs in as "Human Resource"
 		When the user clicks on "Task" tab on the quick navigation
 		And the user clicks on the "Checklist" link in Task
 		And the user enters "This is the first checklist item" as description
@@ -88,9 +88,9 @@ Feature:
 	#5. User can delete a checklist item 
 	#6. User can add Deadline, Time Planning by using date pickers.
 	#7. User should be able to send tasks.
-	@OP-534 @OP-538
-	Scenario: US13_TC05 User can delete a checklist item 
-		Given the user is logged in as "Human Resource"
+	@OP-534 @OP-538 @wip
+	Scenario: US13_TC05 User can delete a checklist item
+		Given the user logs in as "Human Resource"
 		When the user clicks on "Task" tab on the quick navigation
 		And the user clicks on the "Checklist" link in Task
 		And the user enters "Add Checklist Item" as description
@@ -106,9 +106,9 @@ Feature:
 	#5. User can delete a checklist item 
 	#{color:#de350b}6. User can add Deadline, Time Planning by using date pickers.{color}
 	#7. User should be able to send tasks.
-	@OP-535 @OP-538
+	@OP-535 @OP-538 @wip
 	Scenario: US_13_TC06 User can add Deadline, Time Planning by using date pickers.
-		Given the user is logged in as "Human Resource"
+		Given the user logs in as "Human Resource"
 		When the user clicks on "Task" tab on the quick navigation
 		And the user clicks on Deadline box
 		And the user chooses any "Date" in the box
@@ -125,9 +125,9 @@ Feature:
 	#5. User can delete a checklist item 
 	#{color:#de350b}6. User can add Deadline, Time Planning by using date pickers.{color}
 	#7. User should be able to send tasks.
-	@OP-536 @OP-538
+	@OP-536 @OP-538 @wip
 	Scenario: US13_TC07 6. User can add Deadline, Time Planning by using date pickers.
-		Given the user is logged in as "Human Resource"
+		Given the user logs in as "Human Resource"
 		When the user clicks on "Task" tab on the quick navigation
 		And the user clicks on Time planning button
 		And the user clicks on "Starting Date"
@@ -145,9 +145,9 @@ Feature:
 	#5. User can delete a checklist item 
 	#6. User can add Deadline, Time Planning by using date pickers.
 	#{color:#de350b}7. User should be able to send tasks.{color}
-	@OP-537 @OP-538
+	@OP-537 @OP-538 @wip
 	Scenario: US13_TC08 User should be able to send tasks.
-		Given the user is logged in as "Human Resource"
+		Given the user logs in as "Human Resource"
 		When the user clicks on "Task" tab on the quick navigation
 		And the user gives any "Task" in things to do box
 		And the user clicks on Send button
