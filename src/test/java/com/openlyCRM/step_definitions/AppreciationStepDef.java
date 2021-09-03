@@ -32,7 +32,7 @@ public class AppreciationStepDef {
 
     @When("the user clicks on Upload files and images cell")
     public void the_user_clicks_on_Upload_files_and_images_cell() {
-        new MessagePage().uploadFilesBtn.click();
+
     }
 
     @When("the user press enter button")
@@ -144,17 +144,18 @@ public class AppreciationStepDef {
 
     @And("the user upload {string} from local disks")
     public void theUserUploadFromLocalDisks(String arg0) throws InterruptedException {
-        Thread.sleep(6000);
+        BrowserUtils.waitFor(2);
 
-        new AppreciationPage().UploadFilesImages.sendKeys("C:\\Picture.jpg");
-Thread.sleep(3000);
+        new AppreciationPage().UploadFilesImages.sendKeys("C:\\"+arg0);
     }
 
     @Then("the user should be upload {string}")
     public void theUserShouldBeUpload(String arg0) {
-    BrowserUtils.waitFor(5);
-    String expecteddocName=arg0;
-        Assert.assertEquals(expecteddocName,new AppreciationPage().uploadDoc(arg0));
+    BrowserUtils.waitFor(7);
+    String expecteddocName="Picture";
+       // Assert.assertEquals(expecteddocName,new AppreciationPage().uploadDoc(arg0));
+       BrowserUtils.verifyElementDisplayed(By.xpath("//td[@class='files-name']"));
+
 
     }
 
@@ -200,13 +201,14 @@ Assert.assertEquals(Expecteddepartment,Actualdepartment);
     public void theUserSelectAaDepartment() {
 
      new AppreciationPage().aaDepartments.click();
-
+    BrowserUtils.waitFor(1);
 
     }
 
     @And("the user select All depratment and subdepartment employees button")
     public void theUserSelectAllDepratmentAndSubdepartmentEmployeesButton() {
         new AppreciationPage().DepandSubdepartment.click();
+        BrowserUtils.waitFor(1);
     }
 
     @Then("the user should be enter keyword to the Quota Block")
