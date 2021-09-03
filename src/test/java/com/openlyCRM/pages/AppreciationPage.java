@@ -60,6 +60,21 @@ public class AppreciationPage extends BasePage {
     @FindBy(xpath = "//blockquote[@class='bxhtmled-quote']")
     public WebElement QuoteBlock;
 
+    @FindBy(css = "[contenteditable='true']")
+    public WebElement TextBody;
+
+    @FindBy(xpath = "/html//button[@id='blog-submit-button-save'][contains(text(),'Send')]")
+    public WebElement SendButton;
+
+    @FindBy(xpath = "//input[@id='video_idPostFormLHE_blogPostForm-source']")
+    public WebElement VideoInput;
+
+    @FindBy(css="/html[1]/body[1]/div[5]/div[2]/div[2]/input[1]")
+    public WebElement VideoSaveButton;
+
+    @FindBy(xpath = "//span[@class='bxhtmled-video-error']")
+    public WebElement VideoMessage;
+
     public void bottonIconsClick(String IconName){
         String xpad="//div[@id='divoPostFormLHE_blogPostForm']//div[@class='feed-add-post-form-but-wrap']//*[@title='"+IconName+"']";
         Driver.get().findElement(By.xpath(xpad)).click();
