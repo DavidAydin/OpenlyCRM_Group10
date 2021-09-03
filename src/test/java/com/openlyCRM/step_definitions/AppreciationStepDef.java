@@ -1,9 +1,9 @@
 package com.openlyCRM.step_definitions;
 
-import com.openlyCRM.pages.AppreciationPage;
-import com.openlyCRM.pages.BasePage;
+import com.openlyCRM.pages.*;
 import com.openlyCRM.pages.MessagePage;
 import com.openlyCRM.utilities.BrowserUtils;
+import com.openlyCRM.utilities.ConfigurationReader;
 import com.openlyCRM.utilities.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -87,8 +87,10 @@ public class AppreciationStepDef {
     }
     @When("the user enter keyword to the Quota Block")
     public void the_user_enter_keyword_to_the_Quota_Block() {
+        System.out.println("frame size "+Driver.get().findElements(By.tagName("iframe")).size());
+        Driver.get().switchTo().frame(0);
         BrowserUtils.verifyElementDisplayed(new AppreciationPage().QuoteBlock);
-       new AppreciationPage().QuoteBlock.sendKeys("Hello");
+        new AppreciationPage().QuoteBlock.sendKeys("Hello");
     }
 
 
@@ -109,26 +111,28 @@ public class AppreciationStepDef {
     }
     @When("the user select a user")
     public void the_user_select_a_user() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+        new AppreciationPage().EmployeesDepartments.click();
+        new AppreciationPage().Contact1.click();
     }
     @Then("the user should be add in to Content table")
     public void the_user_should_be_add_in_to_Content_table() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        BrowserUtils.waitFor(1);
+        Driver.get().switchTo().frame(0);
+       BrowserUtils.verifyElementDisplayed(By.xpath("//body/span[@class='bxhtmled-metion']"));
     }
 
 
 
     @Given("the user clicks on the send button")
     public void the_user_clicks_on_the_send_button() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+     //  new ActivityStreamPage().eventSendButton.click();
+      //  BrowserUtils.waitForClickablility(new MessagePage().sendBtn,10);
     }
     @Then("the user should be send appreciation")
     public void the_user_should_be_send_appreciation() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        BrowserUtils.waitFor(4);
+       BrowserUtils.verifyElementDisplayed(new AppreciationPage().TextBody);
     }
 
 
@@ -148,7 +152,7 @@ Thread.sleep(3000);
 
     @Then("the user should be upload {string}")
     public void theUserShouldBeUpload(String arg0) {
-    BrowserUtils.waitFor(2);
+    BrowserUtils.waitFor(5);
     String expecteddocName=arg0;
         Assert.assertEquals(expecteddocName,new AppreciationPage().uploadDoc(arg0));
 
@@ -210,4 +214,30 @@ Assert.assertEquals(Expecteddepartment,Actualdepartment);
 
         BrowserUtils.verifyElementDisplayed(By.xpath("//blockquote"));
     }
+
+    @Given("the user enter keyword to Text Body")
+    public void theUserEnterKeywordToTextBody() {
+    Driver.get().switchTo().frame(0);
+    new AppreciationPage().TextBody.sendKeys("Hello");
+    BrowserUtils.waitFor(1);
+    }
+
+    @When("the user send links to VideSource Inbox")
+    public void theUserSendLinksToVideSourceInbox() {
+        new AppreciationPage().VideoInput.sendKeys(ConfigurationReader.get("link2"));
+        BrowserUtils.waitForMilis(2000);
+
+    }
+
+    @Then("the user upload video successfully.")
+    public void theUserUploadVideoSuccessfully() {
+
+        String ExpectedMessage= "Video Uploaded Successfully";
+        String ActuelMessage=new AppreciationPage().VideoMessage.getText();
+
+        Assert.assertEquals(ExpectedMessage,ActuelMessage);
+
+    }
+
+
 }
