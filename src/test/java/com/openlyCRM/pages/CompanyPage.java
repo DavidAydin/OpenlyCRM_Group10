@@ -27,7 +27,7 @@ public class CompanyPage extends BasePage {
     public WebElement dateInputBox;
 
     @FindBy(css = ".bx-core-adm-dialog-tabs > span:nth-of-type(2)")
-    public WebElement detailsMenü;
+    public WebElement detailsMenu;
 
     @FindBy(css = "span#bx_file_detail_picture_add")
     public WebElement addFileDropDown;
@@ -52,7 +52,6 @@ public class CompanyPage extends BasePage {
 
     @FindBy(css = "span#FMturn-l > .adm-photoeditor-btn-icon")
     public WebElement clockwise;
-
 
     @FindBy(xpath = "//input[@name='TAGS']")
     public WebElement TagsInputBox;

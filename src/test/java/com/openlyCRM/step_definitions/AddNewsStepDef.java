@@ -91,7 +91,7 @@ public class AddNewsStepDef {
 
     @And("the user clicks on Details")
     public void theUserClicksOnDetails() {
-        companyPage.detailsMenü.click();
+        companyPage.detailsMenu.click();
     }
 
     @Then("the user click Add File dropdown")
